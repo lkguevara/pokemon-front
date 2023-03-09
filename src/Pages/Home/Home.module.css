@@ -1,0 +1,29 @@
+.image{
+    text-align: center;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 25%;
+
+}
+
+@media (min-width: 768px) {
+    .image{
+        width: 20%;
+    }
+
+    .loading{
+        width: 5%;
+    }
+    
+}
