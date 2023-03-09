@@ -63,6 +63,41 @@ select{
 
 }
 
+/* cards */
+
+
+.card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f0d698;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid #9e720a;
+    cursor: pointer;
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.card__image{
+    width: 60%;
+    height: 60%;
+    border-radius: 10px;
+    margin: 0 auto;
+    display: block;
+}
+
+.card__title{
+    color: #201701;
+    text-align: center;
+}
+
+.link{
+    text-decoration: none;
+}
+
+
 @media (min-width: 768px) {
 
     .container__searchBar{
@@ -91,6 +126,12 @@ select{
 
     select{
         margin-right: 10px;
+    }
+
+    /* cards */
+    .container__cards{
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
     }
 
 }

@@ -17,6 +17,13 @@
 
 }
 
+.card {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    margin: 0 auto;
+
+}
+
 @media (min-width: 768px) {
     .image{
         width: 20%;
@@ -24,6 +31,10 @@
 
     .loading{
         width: 5%;
+    }
+
+    .card{
+        grid-template-columns: repeat(4, 1fr);
     }
     
 }

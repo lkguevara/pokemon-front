@@ -1,10 +1,19 @@
-const CardsHome = ({name, image, type}) => {
+import style from './Home.module.css'
+import { Link } from 'react-router-dom'
+
+const CardsHome = ({name, image, type, id}) => {
   return (
-    <div>
-      <h2>{name}</h2>
-      <img src={image} alt="" />
-      <h3>{type}</h3>
-    </div>
+    <>
+      <div className= {style.card}>
+            <Link className = {style.link} to={`/detail/${id}`}>
+            <img className = {style.card__image} src={image} alt="" />
+            <h2 className={style.card__title}>{name}</h2>
+            <h4 className= {style.card__title}>{type}</h4>
+          </Link>
+ 
+      </div>
+      
+    </>
   )
 }
 

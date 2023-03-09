@@ -35,7 +35,8 @@ const Home = () => {
       <img className= {style.image} src={logo} alt="" />
       <NavBar />
 
-      {
+    <div className= {style.card}>
+    {
         loading ? (
           <div>
             <img className= {style.loading} src={loadingPoke} alt="cargando" />
@@ -43,17 +44,20 @@ const Home = () => {
         ) : 
         pokemons.map((pokemon) => {
             return (
-              <Link to={`/pokemon/${pokemon.id}`} key={pokemon.id}>
+              
                 <Card
+                  
                   name={pokemon.name}
                   image={pokemon.image}
-                  types={pokemon.types}
+                  type={pokemon.types}
                   id={pokemon.id}
                 />
-              </Link>
+  
             )
           })
       }
+    </div>
+      
 
     </div>
 
