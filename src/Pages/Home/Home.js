@@ -1,7 +1,6 @@
 // Importando react y redux
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import style from "./Home.module.css"
 // importando componentes
 import NavBar from '../../components/Home/NavBar';
@@ -9,6 +8,7 @@ import Card from '../../components/Home/CardsHome';
 import Paginate from '../../components/Home/Paginate';
 // importando las actions
 import {getAllPokemons} from '../../redux/actions';
+import {getPokemonsByType} from '../../redux/actions';
 // importando imagenes
 import logo from '../../assets/landinPage.png';
 import loadingPoke from '../../assets/loading.gif';
@@ -19,16 +19,17 @@ const Home = () => {
   const dispatch = useDispatch();
 
   // useSelector
-  let allPokemons = useSelector((state) => state.pokemons);
+  let allPokemons = useSelector((state) => state.pokemons); 
+  let pokemonsTypes = useSelector((state) => state.pokeType); 
   let loading = useSelector((state) => state.loading);
 
   // useStates
-  // páginado
-  const [currentPage, setCurrentPage] = useState(1); // pagina actual
-  const [pokemonsPerPage, setPokemonsPerPage] = useState(12); // pokemons por página
-  const indexOfLastPokemon = currentPage * pokemonsPerPage; // indice del último pokemon de la página
-  const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage; // indice del primer pokemon de la página
-  const currentPokemons = allPokemons.slice(indexOfFirstPokemon, indexOfLastPokemon); // pokemons de la página actual. El slice lo que hace es cortar el array de pokemons y nos devuelve un array con los pokemons de la página actual
+  // Páginado
+  const [currentPage, setCurrentPage] = useState(1); // Corresponde a la página actual, la cual arranca en 1
+  const [pokemonsPerPage, setPokemonsPerPage] = useState(12); // cantidad de pokemons por página
+  const indexOfLastPokemon = currentPage * pokemonsPerPage; // indice del último pokemon 
+  const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage; // indice del primer pokemon 
+  const currentPokemons = allPokemons.slice(indexOfFirstPokemon, indexOfLastPokemon); // cantidad de pokemons de la página actual. El slice lo que hace es cortar el array de pokemons y nos devuelve un array con los pokemons de la página actual
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber); // función para cambiar de página
 
@@ -37,15 +38,23 @@ const Home = () => {
     if(!allPokemons.length) { 
       dispatch(getAllPokemons());
     }
-  }, [dispatch, allPokemons])
-  console.log(allPokemons)
+    if(!pokemonsTypes.length) {
+      dispatch(getPokemonsByType());
+    }
+    
+  }, [dispatch, allPokemons, pokemonsTypes])
+  // console.log(allPokemons, pokemonsTypes)
 
 
 
   return (
     <>
       <img className= {style.image} src={logo} alt="" />
-      <NavBar />
+      <NavBar
+        // llenar el select con los tipos de pokemons
+        pokemonsType={pokemonsTypes}
+
+      />
 
       
 

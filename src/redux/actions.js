@@ -1,12 +1,16 @@
 import axios from 'axios';
 
 import { 
+    // get all pokemons
     GET_ALL_POKEMONS,
-    GET_POKEMONS_ERROR,
-    IS_LOADING
+    IS_LOADING,
+    // get pokemons by type
+    GET_POKEMONS_BY_TYPE,
+    // Filter by type
+    FILTER_BY_TYPE,
 } from './types';
 
-const getAllPokemons = () => async (dispatch) => {
+export const getAllPokemons = () => async (dispatch) => {
     dispatch({
         type: IS_LOADING
     })
@@ -18,19 +22,33 @@ const getAllPokemons = () => async (dispatch) => {
         })
     }catch(error){
         console.log(error.message);
-        dispatch({
-            type: GET_POKEMONS_ERROR,
-            payload: error.message
-        })
     }
 }
- 
+
+export const getPokemonsByType = () => async (dispatch) => {
+    dispatch({
+        type: IS_LOADING
+    })
+    try{
+        const response = await axios.get('http://localhost:3001/types');
+        dispatch({
+            type: GET_POKEMONS_BY_TYPE,
+            payload: response.data
+        })
+    }catch(error){
+        console.log(error.message);
+    }
+}
+
+export const filterByType = (payload) => {
+    return {
+        type: FILTER_BY_TYPE,
+        payload
+    }
+}
 
 
-export { 
-    getAllPokemons,
- 
-};
+
 
 
 

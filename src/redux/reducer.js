@@ -1,15 +1,17 @@
 // imports de los types
 import { 
     GET_ALL_POKEMONS,
-    GET_POKEMONS_ERROR,
-    IS_LOADING
+    IS_LOADING,
+    GET_POKEMONS_BY_TYPE,
+    FILTER_BY_TYPE
 } from './types';
 
 // creando el estado inicial
 const initialState = {
     pokemons: [],
-    loading: false, // para saber si se esta cargando o no
-    error: '', // para saber si hay un error
+    loading: false, 
+    pokeType: [],
+    filteredPokemons: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -19,19 +21,28 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 pokemons: action.payload,
                 loading: false, 
-                error: "",
             }
         case IS_LOADING:
             return {
                 ...state,
                 loading: true,
             }
-            
-        case GET_POKEMONS_ERROR:
+        case GET_POKEMONS_BY_TYPE:
             return {
                 ...state,
-                error: action.payload,
+                pokeType: action.payload,
                 loading: false,
+            }
+        case FILTER_BY_TYPE:
+            if (action.payload === 'All') {
+                return {
+                    ...state,
+                    filteredPokemons: state.pokemons
+                }
+            }
+            return {
+                ...state,
+                filteredPokemons: state.pokemons.filter(pokemon => pokemon.types.includes(action.payload))
             }
         default:
             return state;
