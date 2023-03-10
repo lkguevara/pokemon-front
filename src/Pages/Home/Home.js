@@ -35,28 +35,33 @@ const Home = () => {
       <img className= {style.image} src={logo} alt="" />
       <NavBar />
 
-    <div className= {style.card}>
-    {
+      {
         loading ? (
           <div>
             <img className= {style.loading} src={loadingPoke} alt="cargando" />
           </div>
         ) : 
-        pokemons.map((pokemon) => {
-            return (
-              
-                <Card
+        <div className= {style.card}>
+          {
+            
+            pokemons.map((pokemon) => {
+                return (
                   
-                  name={pokemon.name}
-                  image={pokemon.image}
-                  type={pokemon.types}
-                  id={pokemon.id}
-                />
-  
-            )
-          })
+                    <Card
+                      
+                      name={pokemon.name}
+                      image={pokemon.image}
+                      type={pokemon.types}
+                      id={pokemon.id}
+                    />
+      
+                )
+              })
+          }
+        </div>
       }
-    </div>
+
+    
       
 
     </div>
