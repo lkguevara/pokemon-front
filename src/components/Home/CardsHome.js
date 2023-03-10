@@ -8,7 +8,7 @@ const CardsHome = ({name, image, type, id}) => {
             <Link className = {style.link} to={`/detail/${id}`}>
             <img className = {style.card__image} src={image} alt="" />
             <h2 className={style.card__title}>{name}</h2>
-            <h4 className= {style.card__title}>{type}</h4>
+            <h4 className= {style.card__type}>{type}</h4>
           </Link>
  
       </div>
