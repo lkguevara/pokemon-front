@@ -49,17 +49,35 @@ const rootReducer = (state = initialState, action) => {
                 pokemons: typeFilter,
             }
         case FILTER_BY_CREATED:
-            const allPokemonsCreated = state.allPokemons;
-            const createdFilter = action.payload === 'created' ? allPokemonsCreated.filter(poke => poke.createdInDb) : allPokemonsCreated.filter(poke => !poke.createdInDb);
-            // si no existe el tipo mandar un mensaje de error
-            if(!createdFilter.length){
-                alert('No hay pokemones creados desde la base de datos');
+            const allPokemons2 = state.allPokemons;
+            if (action.payload === 'created') {
+                const createdFilter = allPokemons2.filter(poke => poke.createdDb);
+                return {
+                    ...state,
+                    pokemons: createdFilter,
+                }
             }
-            return {
-                ...state,
-                pokemons: action.payload === 'all' ? allPokemonsCreated : createdFilter,
+            if (action.payload === 'api') {
+                const createdFilter = allPokemons2.filter(poke => !poke.createdDb)
+                return {
+                    ...state,
+                    pokemons: createdFilter,
+                }
             }
+            if (action.payload === 'all') {
+                const createdFilter = allPokemons2;
+                return {
+                    ...state,
+                    pokemons: createdFilter,
+                }
+            }
+            const createdFilter = allPokemons2.filter(poke => poke.createdDb);
 
+            return {    
+                ...state,
+                pokemons: createdFilter,
+            }
+            
         default:
             return state;
     }

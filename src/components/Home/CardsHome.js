@@ -9,13 +9,13 @@ const CardsHome = ({name, image, type, id}) => {
             <img className = {style.card__image} src={image} alt="" />
             <h2 className={style.card__title}>{name}</h2>
             <p className={style.card__id}>#{id}</p>
-           {/* redenderizar solamente el primer tipo de pokemon de cada personaje  */}
-            <p className={style.card__type}>{type.map((type) => {
+
+            {/* <p className={style.card__type}>{type.map((type) => {
               return (
                 <span key={type.id}>{type} </span>
               )
-            })}</p>
-            {/* agregar el numero de personaje */}
+            })}</p> */}
+            <p className={style.card__type}>{type}</p>
             
 
           </Link>
