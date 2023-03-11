@@ -2,7 +2,7 @@ import React from 'react'
 import Search from './SearchBar'
 import style from "./Home.module.css"
 import {useDispatch} from 'react-redux'
-import {filterByType} from '../../redux/actions'
+import {filterByType, filterByCreated} from '../../redux/actions'
 
 
 const NavBar = ({pokemonsType}) => {
@@ -10,10 +10,20 @@ const NavBar = ({pokemonsType}) => {
   // filtrar por tipo
   const dispatch = useDispatch();
 
-  const handleFilter = (e) => {
+  const handleFilterType = (e) => {
+    // e.preventDefault()
     dispatch(filterByType(e.target.value))
     console.log(e.target.value)
   }
+
+  const handleFilterCreated = (e) => {
+    // e.preventDefault()
+    dispatch(filterByCreated(e.target.value))
+    console.log(e.target.value)
+  }
+
+
+
 
   
   return (
@@ -21,7 +31,7 @@ const NavBar = ({pokemonsType}) => {
         <Search/>
         <div className = {style.container__Nav}>
         {/*  Filtrado por tipos */}
-          <select name="filterType" onChange = {e => handleFilter(e)}>
+          <select name="filterType" onChange = {e => handleFilterType(e)}>
             <option value="sortType" disabled = "disabled" >Sort type:</option>  
             <option value="all">All</option>
             {
@@ -37,11 +47,11 @@ const NavBar = ({pokemonsType}) => {
             }
           </select>
         {/*  Ordenado por existente o creado por nosotros */}
-          <select name="filterCreate">
-            <option value="create" disabled = "disabled">Create:</option>
+          <select name="filterCreate" onChange = {e => handleFilterCreated(e)}>
+            <option value="created" disabled = "disabled">Created:</option>
             <option value="all">All</option>
             <option value="api">Pokeapi</option>
-            <option value="database">Database</option>
+            <option value="created">Created</option>
           </select>
 
         {/*  Ordenado por A - Z */}

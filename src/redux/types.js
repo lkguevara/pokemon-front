@@ -7,6 +7,8 @@ export const GET_ALL_POKEMONS = 'GET_ALL_POKEMONS';
 // obtener pokemones por tipo
 export const GET_POKEMONS_BY_TYPE = 'GET_POKEMONS_BY_TYPE';
 
-
 // Filtro por tipo
 export const FILTER_BY_TYPE = 'FILTER_BY_TYPE';
+
+// filtro por creacion
+export const FILTER_BY_CREATED = 'FILTER_BY_CREATED';

@@ -8,6 +8,8 @@ import {
     GET_POKEMONS_BY_TYPE,
     // Filter by type
     FILTER_BY_TYPE,
+    // Filter by created
+    FILTER_BY_CREATED
 } from './types';
 
 export const getAllPokemons = () => async (dispatch) => {
@@ -46,6 +48,14 @@ export const filterByType = (payload) => {
         payload
     }
 }
+
+export const filterByCreated = (payload) => {
+    return {
+        type: FILTER_BY_CREATED,
+        payload
+    }
+}
+
 
 
 

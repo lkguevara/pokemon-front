@@ -3,7 +3,8 @@ import {
     GET_ALL_POKEMONS,
     IS_LOADING,
     GET_POKEMONS_BY_TYPE,
-    FILTER_BY_TYPE
+    FILTER_BY_TYPE,
+    FILTER_BY_CREATED
 } from './types';
 
 // creando el estado inicial
@@ -47,6 +48,18 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 pokemons: typeFilter,
             }
+        case FILTER_BY_CREATED:
+            const allPokemonsCreated = state.allPokemons;
+            const createdFilter = action.payload === 'created' ? allPokemonsCreated.filter(poke => poke.createdInDb) : allPokemonsCreated.filter(poke => !poke.createdInDb);
+            // si no existe el tipo mandar un mensaje de error
+            if(!createdFilter.length){
+                alert('No hay pokemones creados desde la base de datos');
+            }
+            return {
+                ...state,
+                pokemons: action.payload === 'all' ? allPokemonsCreated : createdFilter,
+            }
+
         default:
             return state;
     }

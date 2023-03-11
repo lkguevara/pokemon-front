@@ -115,8 +115,10 @@ select{
  
 .card__type{
     font-weight: normal;
+    font-style: italic;
     display: flex;
     justify-content: space-around;
+    color: #3E54AC;
 }
 
 .card__id{
