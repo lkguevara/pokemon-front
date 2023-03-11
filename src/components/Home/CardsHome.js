@@ -10,12 +10,12 @@ const CardsHome = ({name, image, type, id}) => {
             <h2 className={style.card__title}>{name}</h2>
             <p className={style.card__id}>#{id}</p>
 
-            {/* <p className={style.card__type}>{type.map((type) => {
+            <p className={style.card__type}>{type.map((type) => {
               return (
                 <span key={type.id}>{type} </span>
               )
-            })}</p> */}
-            <p className={style.card__type}>{type}</p>
+            })}</p>
+            {/* <p className={style.card__type}>{type}</p> */}
             
 
           </Link>
