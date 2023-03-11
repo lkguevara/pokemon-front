@@ -105,6 +105,7 @@ select{
     display: block;
 }
 
+
 .card__title,
 .card__type{
     color: rgb(201, 82, 2);
@@ -114,6 +115,16 @@ select{
  
 .card__type{
     font-weight: normal;
+    display: flex;
+    justify-content: space-around;
+}
+
+.card__id{
+    color: rgb(248, 103, 7);
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    /* text-align: right; */
 }
 
 .link{

@@ -5,10 +5,19 @@ const CardsHome = ({name, image, type, id}) => {
   return (
     <>
       <div className= {style.card}>
-            <Link className = {style.link} to={`/detail/${id}`}>
+          <Link className = {style.link} to={`/detail/${id}`}>
             <img className = {style.card__image} src={image} alt="" />
             <h2 className={style.card__title}>{name}</h2>
-            <h4 className= {style.card__type}>{type}</h4>
+            <p className={style.card__id}>#{id}</p>
+           {/* redenderizar solamente el primer tipo de pokemon de cada personaje  */}
+            <p className={style.card__type}>{type.map((type) => {
+              return (
+                <span key={type.id}>{type} </span>
+              )
+            })}</p>
+            {/* agregar el numero de personaje */}
+            
+
           </Link>
  
       </div>

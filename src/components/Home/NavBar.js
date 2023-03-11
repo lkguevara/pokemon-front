@@ -1,8 +1,19 @@
 import React from 'react'
 import Search from './SearchBar'
 import style from "./Home.module.css"
+import {useDispatch} from 'react-redux'
+import {filterByType} from '../../redux/actions'
+
 
 const NavBar = ({pokemonsType}) => {
+
+  // filtrar por tipo
+  const dispatch = useDispatch();
+
+  const handleFilter = (e) => {
+    dispatch(filterByType(e.target.value))
+    console.log(e.target.value)
+  }
 
   
   return (
@@ -10,13 +21,16 @@ const NavBar = ({pokemonsType}) => {
         <Search/>
         <div className = {style.container__Nav}>
         {/*  Filtrado por tipos */}
-          <select name="filterType">
+          <select name="filterType" onChange = {e => handleFilter(e)}>
             <option value="sortType" disabled = "disabled" >Sort type:</option>  
             <option value="all">All</option>
             {
               pokemonsType.map((type) => {
                 return (
-                  <option>
+                  <option 
+                    value={type.value}
+                    key={type.id}
+                  >
                     {type}
                   </option>
               )})

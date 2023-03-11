@@ -7,8 +7,8 @@ import NavBar from '../../components/Home/NavBar';
 import Card from '../../components/Home/CardsHome';
 import Paginate from '../../components/Home/Paginate';
 // importando las actions
-import {getAllPokemons} from '../../redux/actions';
-import {getPokemonsByType} from '../../redux/actions';
+import {getAllPokemons,getPokemonsByType} from '../../redux/actions';
+import {} from '../../redux/actions';
 // importando imagenes
 import logo from '../../assets/landinPage.png';
 import loadingPoke from '../../assets/loading.gif';

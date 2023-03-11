@@ -9,6 +9,7 @@ import {
 // creando el estado inicial
 const initialState = {
     pokemons: [],
+    allPokemons: [],
     loading: false, 
     pokeType: [],
     filteredPokemons: []
@@ -20,6 +21,7 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 pokemons: action.payload,
+                allPokemons: action.payload,
                 loading: false, 
             }
         case IS_LOADING:
@@ -34,15 +36,16 @@ const rootReducer = (state = initialState, action) => {
                 loading: false,
             }
         case FILTER_BY_TYPE:
-            if (action.payload === 'All') {
-                return {
-                    ...state,
-                    filteredPokemons: state.pokemons
-                }
+            // constante que contiene todos los pokemones
+            const allPokemons = state.allPokemons;
+            const typeFilter = action.payload === 'all' ? allPokemons : allPokemons.filter(poke => poke.types.includes(action.payload));
+            // si no existe el tipo mandar un mensaje de error
+            if(!typeFilter.length){
+                alert('No hay pokemones de este tipo');
             }
             return {
                 ...state,
-                filteredPokemons: state.pokemons.filter(pokemon => pokemon.types.includes(action.payload))
+                pokemons: typeFilter,
             }
         default:
             return state;
