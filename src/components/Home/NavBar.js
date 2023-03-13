@@ -2,7 +2,7 @@ import React from 'react'
 import Search from './SearchBar'
 import style from "./Home.module.css"
 import {useDispatch} from 'react-redux'
-import {filterByType, filterByCreated, filterByName} from '../../redux/actions'
+import {filterByType, filterByCreated, filterByName, filterByAttack} from '../../redux/actions'
 
 
 const NavBar = ({pokemonsType, setCurrentPage, setOrder}) => {
@@ -28,6 +28,13 @@ const NavBar = ({pokemonsType, setCurrentPage, setOrder}) => {
     setCurrentPage(1) 
     setOrder(`order = ${e.target.value}`)
     
+  }
+
+  const handleFilterAttack = (e) => {
+    e.preventDefault()
+    dispatch(filterByAttack(e.target.value))
+    setCurrentPage(1)
+    setOrder(`order = ${e.target.value}`)
   }
 
 
@@ -62,11 +69,11 @@ const NavBar = ({pokemonsType, setCurrentPage, setOrder}) => {
         {/*  Ordenado por A - Z */}
           <select name="orderASC" onChange = {e => handleFilterName(e)}>
             <option value="default" disabled = "disabled" >Sort by Name</option>
-            <option value="asc">Ascendente</option>
-            <option value="desc">Descendente</option>
+            <option value="asc">Name A-Z</option>
+            <option value="desc">Name Z-A</option>
           </select>
         {/*  Ordenado por attack */}
-          <select name="orderASC">
+          <select name="orderASC" onChange = {e => handleFilterAttack(e)}>
             <option value="default" disabled = "disabled" >Sort by Attack</option>
             <option value="asc">Attack A -Z </option>
             <option value="desc">Attack Z - A</option>

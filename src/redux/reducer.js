@@ -105,6 +105,31 @@ const rootReducer = (state = initialState, action) => {
                     ...state,
                     pokemons: orderName,
                 }
+            case FILTER_BY_ATTACK:
+                let orderAttack = action.payload === 'asc' ?
+                    state.pokemons.sort((a, b) => {
+                        if(a.attack > b.attack){
+                            return 1;
+                        }
+                        if(b.attack > a.attack){
+                            return -1;
+                        }
+                        return 0;
+                    }) :
+                    state.pokemons.sort((a, b) => {
+                        if(a.attack > b.attack){
+                            return -1;
+                        }
+                        if(b.attack > a.attack){
+                            return 1;
+                        }
+                        return 0;
+                    })
+                return {
+                    ...state,
+                    pokemons: orderAttack,
+                }
+                
 
                     
         default:

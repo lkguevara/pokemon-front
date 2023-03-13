@@ -14,6 +14,7 @@ const CardsHome = ({name, image, type, id, attack}) => {
               return (<span key={type.id}>{type} </span>)
             })}</p>
             {/* <p className={style.card__type}>{type}`</p> */}
+            <p className={style.card__type}>Attack: {attack}</p>
           
             
 
