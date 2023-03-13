@@ -1,15 +1,13 @@
 import axios from 'axios';
 
 import { 
-    // get all pokemons
     GET_ALL_POKEMONS,
     IS_LOADING,
-    // get pokemons by type
     GET_POKEMONS_BY_TYPE,
-    // Filter by type
     FILTER_BY_TYPE,
-    // Filter by created
-    FILTER_BY_CREATED
+    FILTER_BY_CREATED,
+    FILTER_BY_NAME,
+    FILTER_BY_ATTACK
 } from './types';
 
 export const getAllPokemons = () => async (dispatch) => {
@@ -55,6 +53,22 @@ export const filterByCreated = (payload) => {
         payload
     }
 }
+
+export const filterByName = (payload) => {
+    return {
+        type: FILTER_BY_NAME,
+        payload
+    }
+}
+
+export const filterByAttack = (payload) => {
+    return {
+        type: FILTER_BY_ATTACK,
+        payload
+    }
+}
+
+
 
 
 

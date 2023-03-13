@@ -1,7 +1,7 @@
 import style from './Home.module.css'
 import { Link } from 'react-router-dom'
 
-const CardsHome = ({name, image, type, id}) => {
+const CardsHome = ({name, image, type, id, attack}) => {
   return (
     <>
       <div className= {style.card}>
@@ -11,11 +11,10 @@ const CardsHome = ({name, image, type, id}) => {
             <p className={style.card__id}>#{id}</p>
 
             <p className={style.card__type}>{type.map((type) => {
-              return (
-                <span key={type.id}>{type} </span>
-              )
+              return (<span key={type.id}>{type} </span>)
             })}</p>
-            {/* <p className={style.card__type}>{type}</p> */}
+            {/* <p className={style.card__type}>{type}`</p> */}
+          
             
 
           </Link>

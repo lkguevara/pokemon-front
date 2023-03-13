@@ -2,30 +2,35 @@ import React from 'react'
 import Search from './SearchBar'
 import style from "./Home.module.css"
 import {useDispatch} from 'react-redux'
-import {filterByType, filterByCreated} from '../../redux/actions'
+import {filterByType, filterByCreated, filterByName} from '../../redux/actions'
 
 
-const NavBar = ({pokemonsType}) => {
-
-  // filtrar por tipo
+const NavBar = ({pokemonsType, setCurrentPage, setOrder}) => {
   const dispatch = useDispatch();
 
   const handleFilterType = (e) => {
-    // e.preventDefault()
+    e.preventDefault()
     dispatch(filterByType(e.target.value))
     console.log(e.target.value)
   }
 
   const handleFilterCreated = (e) => {
-    // e.preventDefault()
+    e.preventDefault()
     dispatch(filterByCreated(e.target.value))
     console.log(e.target.value)
   }
 
+  const handleFilterName = (e) => {
+    e.preventDefault()
+    dispatch(filterByName(e.target.value))
+
+    // setear la pagina en 1
+    setCurrentPage(1) 
+    setOrder(`order = ${e.target.value}`)
+    
+  }
 
 
-
-  
   return (
     <div>
         <Search/>
@@ -55,12 +60,16 @@ const NavBar = ({pokemonsType}) => {
           </select>
 
         {/*  Ordenado por A - Z */}
+          <select name="orderASC" onChange = {e => handleFilterName(e)}>
+            <option value="default" disabled = "disabled" >Sort by Name</option>
+            <option value="asc">Ascendente</option>
+            <option value="desc">Descendente</option>
+          </select>
+        {/*  Ordenado por attack */}
           <select name="orderASC">
-            <option value="sortBy" disabled = "disabled" >Sort by</option>
-            <option value="name_asc">Name A - Z</option>
-            <option value="name_desc">Name Z - A</option>
-            <option value="attack_asc">attack A -Z </option>
-            <option value="attack_desc">attack Z - A</option>
+            <option value="default" disabled = "disabled" >Sort by Attack</option>
+            <option value="asc">Attack A -Z </option>
+            <option value="desc">Attack Z - A</option>
           </select>
       </div>
     </div>

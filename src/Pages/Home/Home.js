@@ -20,7 +20,7 @@ const Home = () => {
 
   // useSelector
   let allPokemons = useSelector((state) => state.pokemons); 
-  let pokemonsTypes = useSelector((state) => state.pokeType); 
+  let pokemonsTypes = useSelector((state) => state.types); 
   let loading = useSelector((state) => state.loading);
 
   // useStates
@@ -30,6 +30,9 @@ const Home = () => {
   const indexOfLastPokemon = currentPage * pokemonsPerPage; // indice del último pokemon 
   const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage; // indice del primer pokemon 
   const currentPokemons = allPokemons.slice(indexOfFirstPokemon, indexOfLastPokemon); // cantidad de pokemons de la página actual. El slice lo que hace es cortar el array de pokemons y nos devuelve un array con los pokemons de la página actual
+
+
+  const [order, setOrder] = useState('');
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber); // función para cambiar de página
 
@@ -53,6 +56,8 @@ const Home = () => {
       <NavBar
         // llenar el select con los tipos de pokemons
         pokemonsType={pokemonsTypes}
+        setCurrentPage={setCurrentPage}
+        setOrder={setOrder}
 
       />
 
@@ -75,7 +80,9 @@ const Home = () => {
                       name={pokemon.name}
                       image={pokemon.image}
                       type={pokemon.types}
+                      attack={pokemon.attack}
                       id={pokemon.id}
+                      key={pokemon.key}
                     />
       
                 )
