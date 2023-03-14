@@ -4,10 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import style from "./Home.module.css"
 // importando componentes
 import NavBar from '../../components/Home/NavBar';
+import Search from '../../components/Home/SearchBar';
 import Card from '../../components/Home/CardsHome';
 import Paginate from '../../components/Home/Paginate';
 // importando las actions
-import {getAllPokemons,getPokemonsByType} from '../../redux/actions';
+import {getAllPokemons,getPokemonsByType, getPokemonsByName} from '../../redux/actions';
 import {} from '../../redux/actions';
 // importando imagenes
 import logo from '../../assets/landinPage.png';
@@ -45,7 +46,8 @@ const Home = () => {
       dispatch(getPokemonsByType());
     }
     
-  }, [dispatch, allPokemons, pokemonsTypes])
+  }, [dispatch, allPokemons, pokemonsTypes]);
+    
   // console.log(allPokemons, pokemonsTypes)
 
 
@@ -53,6 +55,9 @@ const Home = () => {
   return (
     <>
       <img className= {style.image} src={logo} alt="" />
+      <Search 
+        setCurrentPage={setCurrentPage}
+      />
       <NavBar
         // llenar el select con los tipos de pokemons
         pokemonsType={pokemonsTypes}

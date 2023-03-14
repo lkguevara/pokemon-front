@@ -1,5 +1,4 @@
 import React from 'react'
-import Search from './SearchBar'
 import style from "./Home.module.css"
 import {useDispatch} from 'react-redux'
 import {filterByType, filterByCreated, filterByName, filterByAttack} from '../../redux/actions'
@@ -40,7 +39,7 @@ const NavBar = ({pokemonsType, setCurrentPage, setOrder}) => {
 
   return (
     <div>
-        <Search/>
+        
         <div className = {style.container__Nav}>
         {/*  Filtrado por tipos */}
           <select name="filterType" onChange = {e => handleFilterType(e)}>
@@ -51,7 +50,8 @@ const NavBar = ({pokemonsType, setCurrentPage, setOrder}) => {
                 return (
                   <option 
                     value={type.value}
-                    key={type.id}
+                    id={type.id}
+                    key={type.key}
                   >
                     {type}
                   </option>

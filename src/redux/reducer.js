@@ -6,7 +6,8 @@ import {
     FILTER_BY_TYPE,
     FILTER_BY_CREATED,
     FILTER_BY_NAME,
-    FILTER_BY_ATTACK
+    FILTER_BY_ATTACK, 
+    GET_POKEMONS_BY_NAME
 } from './types';
 
 // creando el estado inicial
@@ -15,7 +16,8 @@ const initialState = {
     allPokemons: [],
     loading: false, 
     types: [],
-    filteredPokemons: []
+    filteredPokemons: [],
+    
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -28,11 +30,19 @@ const rootReducer = (state = initialState, action) => {
                 allPokemons: action.payload,
                 loading: false, 
             }
+
+            case GET_POKEMONS_BY_NAME:
+                return {
+                    ...state,
+                    pokemons: action.payload,
+                }
+
         case IS_LOADING:
             return {
                 ...state,
                 loading: true,
             }
+
         case GET_POKEMONS_BY_TYPE:
             return {
                 ...state,
@@ -129,8 +139,6 @@ const rootReducer = (state = initialState, action) => {
                     ...state,
                     pokemons: orderAttack,
                 }
-                
-
                     
         default:
             return state;

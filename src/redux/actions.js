@@ -7,7 +7,8 @@ import {
     FILTER_BY_TYPE,
     FILTER_BY_CREATED,
     FILTER_BY_NAME,
-    FILTER_BY_ATTACK
+    FILTER_BY_ATTACK,
+    GET_POKEMONS_BY_NAME
 } from './types';
 
 export const getAllPokemons = () => async (dispatch) => {
@@ -23,6 +24,26 @@ export const getAllPokemons = () => async (dispatch) => {
     }catch(error){
         console.log(error.message);
     }
+}
+
+export const getPokemonsByName = (name) => async (dispatch) => {
+    dispatch({
+        type: IS_LOADING
+    })
+    try{
+        // si no existe el pokemon mandar un mensaje de error
+        if(!name){
+            alert('No existe el pokemon');
+        }
+        const response = await axios.get(`http://localhost:3001/pokemons/${name}`);
+        dispatch({
+            type: GET_POKEMONS_BY_NAME,
+            payload: response.data
+        })
+    }catch(error){
+        console.log(error.message);
+    }
+
 }
 
 export const getPokemonsByType = () => async (dispatch) => {
@@ -67,6 +88,8 @@ export const filterByAttack = (payload) => {
         payload
     }
 }
+
+
 
 
 
